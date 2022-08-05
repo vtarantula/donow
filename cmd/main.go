@@ -27,7 +27,12 @@ func main() {
 	log := logging.NewFile(logfile)
 	log.Info("*** Starting Application ***")
 
-	server.Run()
+	ipaddr, port := "0.0.0.0", 8086
+	// ipaddr, port := "localhost", 8086
+	err := server.Start(&ipaddr, port)
+	if err != nil {
+		log.Error(err.Error())
+	}
 
 	log.Info("*** Ending Application ***")
 }
